@@ -1,38 +1,39 @@
-import Lottie from "lottie-react";
-import registerLottie from "../../assets/lotties/Register.json";
-import AuthContext from "../../context/AuthContext";
-import { use } from "react";
+import React, { use } from 'react';
+import AuthContext from '../../context/AuthContext';
+import logInLottie from '../../assets/lotties/Login.json'
+import Lottie from 'lottie-react';
 
-const Register = () => {
-  const { createUser } = use(AuthContext);
+const SignIn = () => {
 
-  const handleRegister = (e) => {
+    const { signInUser } = use(AuthContext);
+
+  const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email,password)
 
-    // create User
-    createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .then((error) => {
-        console.log(error);
-      });
+    // SignIn user 
+    signInUser(email,password)
+    .then(result =>{
+      console.log(result.user)
+    })
+    .then(error =>{
+      console.log(error)
+    })
+    
   };
 
-  return (
-    <div className="hero bg-base-200 min-h-screen">
+    return (
+         <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <Lottie className="w-52" animationData={registerLottie} loop={true} />
+          <Lottie className="w-52" animationData={logInLottie} loop={true} />
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-            <form onSubmit={handleRegister}>
+            <h1 className="text-5xl font-bold">SignIn now!</h1>
+            <form onSubmit={handleSignIn}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
                 <input
@@ -51,14 +52,14 @@ const Register = () => {
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>
-                <button className="btn btn-neutral mt-4">Register</button>
+                <button className="btn btn-neutral mt-4">SignIn</button>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default Register;
+export default SignIn;
