@@ -15,8 +15,9 @@ const router = createBrowserRouter([
         Component: Home
       },
       {
-        path: '/job/:id',
-        element: JobDetails
+        path: '/jobs/:id',
+        Component: JobDetails,
+        loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)
       },
       {
         path: '/register',
